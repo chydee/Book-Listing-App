@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#D3D3D3</color>
+    <color name="colorAccent">#23303D</color>
+
+    <!-- Text color for the details of the book in the list item -->
+    <color name="textColorBookDetails">#A9A8C9</color>
+
+    <!-- Text color for the author name and book title of the book in the list item -->
+    <color name="textColorAuthor">#2B3D4D</color>
 </resources>

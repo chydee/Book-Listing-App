@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_padding">10dp</dimen>
+    <dimen name="corner_radius">10dp</dimen>
+    <dimen name="linear_layout_padding">16dp</dimen>
+    <dimen name="title_textSize">15sp</dimen>
+    <dimen name="date_textSize">15sp</dimen>
+    <dimen name="description_text_size">12sp</dimen>
+    <dimen name="top_marg">5dp</dimen>
+</resources>
