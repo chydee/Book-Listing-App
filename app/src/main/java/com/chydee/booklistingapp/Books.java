@@ -2,10 +2,9 @@ package com.chydee.booklistingapp;
 
 public class Books {
     //Globals
-    private double mRatings;
+    private int mRatings;
     private String mThumnail;
-    private String mWebUrlLink;
-    private String mTextSnippet;
+    private String mPreviewUrl;
     private String mCategory;
     private String mDate;
     private String mTitle;
@@ -17,24 +16,22 @@ public class Books {
      * Create a new array Adapter Object
      * @param ratings for the book ratings
      * @param thumbnail for the book's image.
-     * @param webUrlLink for the book's preview page
+     * @param previewUrl for the book's preview page
      * @param category for the category of the book
      * @param date for the date the book was published
      * @param publisher for the publishers' names
-     * @param textSnippet to serve as an alternative when theres no description for the book
      * @param title for the title of the book
      * @param authors for the authors' names
      * @param description for the book's description
      */
 
-    public Books(double ratings, String thumbnail, String webUrlLink, String category, String date, String publisher, String textSnippet, String title, String authors, String description){
+    public Books(int ratings, String thumbnail, String previewUrl, String category, String date, String publisher, String title, String authors, String description){
         this.mRatings = ratings;
         this.mThumnail = thumbnail;
-        this.mWebUrlLink = webUrlLink;
+        this.mPreviewUrl = previewUrl;
         this.mCategory = category;
         this.mDate = date;
         this.mPublishers = publisher;
-        this.mTextSnippet = textSnippet;
         this.mTitle = title;
         this.mAuthors = authors;
         this.mDescription = description;
@@ -42,7 +39,7 @@ public class Books {
 
     //Set getter for the variables
 
-    public double getRatings() {
+    public float getRatings() {
         return mRatings;
     }
 
@@ -50,12 +47,8 @@ public class Books {
         return mThumnail;
     }
 
-    public String getWebUrlLink() {
-        return mWebUrlLink;
-    }
-
-    public String getTextSnippet() {
-        return mTextSnippet;
+    public String getPreviewUrl() {
+        return mPreviewUrl;
     }
 
     public String getCategory() {

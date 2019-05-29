@@ -13,6 +13,7 @@
         android:dividerHeight="0dp" />
 
     <ImageView
+        android:contentDescription="@string/empty_view_image"
         android:id="@+id/empty_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

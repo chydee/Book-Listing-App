@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">Book Listing App</string>
+    <string name="app_name">Find Books</string>
     <string name="item_thumbnail">item_thumbnail</string>
     <string name="book_description">Homo Deus: A Brief History of Tomorrow by Yuval Noah Harari| Book Summary | Readtrepreneur (Disclaimer: This is NOT the original book, but an unofficial summary.) Mankind is undoubtedly one interesting species.</string>
+    <string name="empty_view_image">empty_view image</string>
+    <string name="search">search</string>
 </resources>

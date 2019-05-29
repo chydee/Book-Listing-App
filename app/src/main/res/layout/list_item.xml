@@ -33,11 +33,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
                 android:layout_marginStart="@dimen/linear_layout_padding"
                 android:layout_marginTop="@dimen/top_marg"
                 android:layout_marginEnd="10dp"
                 android:layout_toStartOf="@id/date_ratn"
                 android:gravity="center_vertical"
+                android:layout_marginLeft="@dimen/linear_layout_padding"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/date_ratn"
                 android:orientation="vertical">
 
                 <TextView
@@ -74,6 +78,9 @@
                 android:layout_marginTop="@dimen/top_marg"
                 android:layout_marginEnd="@dimen/linear_layout_padding"
                 android:gravity="center_vertical"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="@dimen/linear_layout_padding"
                 android:orientation="vertical">
 
                 <TextView
@@ -84,8 +91,9 @@
                     android:maxLines="1"
                     android:textColor="@color/textColorBookDetails"
                     android:textSize="@dimen/date_textSize"
+                    android:layout_gravity="end"
                     app:fontFamily="sans-serif-medium"
-                    tools:text="Authors, author, author" />
+                    tools:text="12/08/199" />
 
                 <RatingBar
                     android:id="@+id/ratings"
@@ -108,7 +116,8 @@
                 android:maxLines="7"
                 android:textColor="@color/textColorBookDetails"
                 android:textSize="@dimen/description_text_size"
-                tools:text="@string/book_description"/>
+                android:layout_marginLeft="@dimen/linear_layout_padding"
+                tools:text="@string/book_description" />
 
 
         </RelativeLayout>
