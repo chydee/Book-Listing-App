@@ -29,7 +29,7 @@ public class QueryUtils {
      * directly from the class name QueryUtils (and an object instance of QueryUtils is not needed)
      */
 
-    private QueryUtils(){
+    private QueryUtils() {
         // required Empty private constructor
     }
 
@@ -39,24 +39,24 @@ public class QueryUtils {
      */
 
     //Returns new URL object from the given string URL
-    private static URL createUrl (String queryURL){
+    private static URL createUrl(String queryURL) {
 
         URL url = null;
-        try{
+        try {
             url = new URL(queryURL);
-        } catch (MalformedURLException e){
+        } catch (MalformedURLException e) {
             Log.e(LOG_TAG, "Error creating URL", e);
         }
         return url;
     }
 
     //make an HTTP request to the given URL and returbn a String as the response
-    private static String makeHttpRequest(URL url) throws IOException{
+    private static String makeHttpRequest(URL url) throws IOException {
         Log.i(LOG_TAG, "Connecting to the internet...");
         String jsonResponse = "";
 
         //If the URL is null, then return early.
-        if (url == null){
+        if (url == null) {
             return jsonResponse;
         }
         HttpURLConnection urlConnection = null;
@@ -70,17 +70,17 @@ public class QueryUtils {
 
             //If the request is successful
             //Then read the input stream and parse the response
-            if (urlConnection.getResponseCode() == 200){
+            if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
             } else {
-                Log.e(LOG_TAG, "Error, response code: "+ urlConnection.getResponseCode());
+                Log.e(LOG_TAG, "Error, response code: " + urlConnection.getResponseCode());
             }
         } finally {
-            if (urlConnection != null){
+            if (urlConnection != null) {
                 urlConnection.disconnect(); //cancel connection
             }
-            if (inputStream != null){
+            if (inputStream != null) {
                 inputStream.close();//Close input stream
             }
         }
@@ -94,11 +94,11 @@ public class QueryUtils {
 
     private static String readFromStream(InputStream inputStream) throws IOException {
         StringBuilder output = new StringBuilder();
-        if (inputStream != null){
-            InputStreamReader  inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
+        if (inputStream != null) {
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line = reader.readLine();
-            while (line != null){
+            while (line != null) {
                 output.append(line);
                 line = reader.readLine();
             }
@@ -111,9 +111,9 @@ public class QueryUtils {
      * about the books detail from the input booksJson string
      */
 
-    private static List<Books> extractFeatueFromJSON (String booksJSON){
+    private static List<Books> extractFeatueFromJSON(String booksJSON) {
         //If the JSON String is empty or null, then return early
-        if (TextUtils.isEmpty(booksJSON)){
+        if (TextUtils.isEmpty(booksJSON)) {
             return null;
         }
 
@@ -134,7 +134,7 @@ public class QueryUtils {
              */
             JSONArray booksArray = baseJsonResponse.optJSONArray("items");
             // For each Book in the booksArray, create {@link Books} object
-            for (int i = 0; i < booksArray.length(); i++){
+            for (int i = 0; i < booksArray.length(); i++) {
                 //Get a single book, extract the JSONObject associated with
                 //the keys called "volumeInfo" and the "searchInfo"
                 //which represents a list of all the properties of a particular book
@@ -151,22 +151,23 @@ public class QueryUtils {
                 JSONArray bookAuthors = volumeInfo.optJSONArray("authors");
                 //Get the name of the first author from the authors array
                 String authors = "";
-                if (bookAuthors.length() > 1){
-                    for (int j = 0; j < bookAuthors.length(); j++){
+                if (bookAuthors.length() > 1) {
+                    for (int j = 0; j < bookAuthors.length(); j++) {
                         authors = bookAuthors.getString(j) + " and " + authors;
                     }
+                } else {
+                    authors = bookAuthors.optString(0);
                 }
 
                 String publisher = volumeInfo.optString("publisher");
                 String date = volumeInfo.optString("publishedDate");
                 String description = volumeInfo.optString("description");
                 //check if the description is available
-                if (description == null){
+                if (description == null) {
                     //Use the textSnippet in place of the description
                     description = searchInfo.optString("textSnippet");
                 }
                 int ratingsCount = volumeInfo.optInt("ratingsCount");
-
                 String imageURL = "";
                 if (volumeInfo.has("imageLinks")) {
                     JSONObject imageLinksObject = volumeInfo.optJSONObject("imageLinks");
@@ -178,11 +179,11 @@ public class QueryUtils {
                 }
 
 
-                //JSONArray categories = volumeInfo.optJSONArray("categories");
-                //String mainCategory = "";
-                //for (int x = 0; x < categories.length(); x++){
-                //mainCategory = categories.getString(x);
-                //}
+               /* JSONArray categories = volumeInfo.optJSONArray("categories");
+                String mainCategory = "";
+                for (int x = 0; x < categories.length(); x++){
+                     mainCategory = categories.getString(x);
+                }*/
                 String previewURL = volumeInfo.optString("infoLink");
 
                 /**
@@ -192,9 +193,9 @@ public class QueryUtils {
 
                 Books books1 = new Books(ratingsCount, imageURL, previewURL, date, publisher, title, authors, description);
 
-               books.add(books1);
+                books.add(books1);
             }
-        } catch (JSONException e){
+        } catch (JSONException e) {
             Log.e(LOG_TAG, "Problem parsing the books' JSON results", e);
         }
         return books;
@@ -205,7 +206,7 @@ public class QueryUtils {
      * objects
      */
 
-    public static List<Books> fetchBooksData(String requestUrl){
+    public static List<Books> fetchBooksData(String requestUrl) {
        /* try {
             Thread.sleep(2000);// To delay the displaying of the data just to show the progress bar
         } catch (InterruptedException e) {
@@ -216,7 +217,7 @@ public class QueryUtils {
 
         //Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
-        try{
+        try {
             jsonResponse = makeHttpRequest(url);
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making HTTP request...", e);
