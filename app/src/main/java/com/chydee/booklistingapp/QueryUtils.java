@@ -132,13 +132,13 @@ public class QueryUtils {
             Extract the JSONArray associated with the key called "items"
             which represents a list of items (or books' details)
              */
-            JSONArray booksArray = baseJsonResponse.getJSONArray("items");
+            JSONArray booksArray = baseJsonResponse.optJSONArray("items");
             // For each Book in the booksArray, create {@link Books} object
             for (int i = 0; i < booksArray.length(); i++){
                 //Get a single book, extract the JSONObject associated with
                 //the keys called "volumeInfo" and the "searchInfo"
                 //which represents a list of all the properties of a particular book
-                JSONObject currentBook = booksArray.getJSONObject(i);
+                JSONObject currentBook = booksArray.optJSONObject(i);
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
                 JSONObject searchInfo = currentBook.getJSONObject("searchInfo");
                 /**
@@ -150,12 +150,13 @@ public class QueryUtils {
                 String title = volumeInfo.optString("title");
                 JSONArray bookAuthors = volumeInfo.optJSONArray("authors");
                 //Get the name of the first author from the authors array
-                String authors = bookAuthors.getString(0);
+                StringBuilder authors = new StringBuilder();
+                if (bookAuthors.length() > 1){
+                    for (int j = 0; j < bookAuthors.length(); j++){
+                        authors.insert(0, bookAuthors.getString(j) + " and ");
+                    }
+                }
 
-               /* for (int j = 0; j < bookAuthors.length(); j++){
-                    authors = bookAuthors.getString(j);
-                    TODO: Need attention
-                }*/
                 String publisher = volumeInfo.optString("publisher");
                 String date = volumeInfo.optString("publishedDate");
                 String description = volumeInfo.optString("description");
@@ -166,15 +167,22 @@ public class QueryUtils {
                 }
                 int ratingsCount = volumeInfo.optInt("ratingsCount");
 
-                JSONObject imageLink = volumeInfo.optJSONObject("imageLinks");
-                String imageUrl = imageLink.optString("thumbnail");
+                String imageURL = "";
+                if (volumeInfo.has("imageLinks")) {
+                    JSONObject imageLinksObject = volumeInfo.optJSONObject("imageLinks");
+                    if (imageLinksObject.has("thumbnail")) {
+                        imageURL = imageLinksObject.optString("thumbnail");
+
+                    }
+
+                }
 
 
-               /* JSONArray categories = volumeInfo.optJSONArray("categories");
-                String mainCategory = "";
-                for (int x = 0; x < categories.length(); x++){
-                     mainCategory = categories.getString(x);
-                }*/
+                //JSONArray categories = volumeInfo.optJSONArray("categories");
+                //String mainCategory = "";
+                //for (int x = 0; x < categories.length(); x++){
+                //mainCategory = categories.getString(x);
+                //}
                 String previewURL = volumeInfo.optString("infoLink");
 
                 /**
@@ -182,7 +190,7 @@ public class QueryUtils {
                  * from the JSON response
                  */
 
-                Books books1 = new Books(ratingsCount, authors, publisher, date, description, title, imageUrl, previewURL);
+                Books books1 = new Books(ratingsCount, imageURL, previewURL, date, publisher, title, authors.toString(), description);
 
                books.add(books1);
             }

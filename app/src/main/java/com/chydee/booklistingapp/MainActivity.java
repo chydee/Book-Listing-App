@@ -24,8 +24,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<Books>> {
 
-    //Log Tag
-    public static final String LOG_TAG = MainActivity.class.getName();
 
     // URL for the Books data from the GoogleBooks Dataset
 
@@ -45,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     // or when theres no internet connection
     private ImageView mEmptyStateImageView;
     private TextView mEmptyStateTextView;
+    private TextView textViewBelowEmptyView;
 
     //ProgressView that is displayed when the app is fetching data from
     //the internet
@@ -59,11 +58,11 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
             MenuItem searchMenuItem = menu.findItem(R.id.action_search);
             SearchView searchView = (SearchView) searchMenuItem.getActionView();
-            searchView.setSubmitButtonEnabled(true);
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
                     mEmptyStateTextView.setVisibility(View.GONE);
+                    textViewBelowEmptyView.setVisibility(View.GONE);
                     mProgressBar.setVisibility(View.VISIBLE);
                     newUrl = url + query;
                     getLoaderManager().restartLoader(BOOKS_LOADER_ID, null, MainActivity.this);
@@ -103,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         mEmptyStateImageView = findViewById(R.id.empty_view);
         mEmptyStateTextView = findViewById(R.id.empty_textView);
+        textViewBelowEmptyView = findViewById(R.id.textView_belowEmptyView);
+
+
 
         mProgressBar = findViewById(R.id.loading_spinner);
 
@@ -119,11 +121,15 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             // Prepare the loader.  Either re-connect with an existing one,
 // or start a new one.
             mProgressBar.setVisibility(View.GONE);
-            mEmptyStateTextView.setText("Search for Books on Any Topic");
+            mEmptyStateImageView.setImageResource(R.drawable.people_eading);
+            textViewBelowEmptyView.setText("Search For Books and Check 'em out :)");
+            mEmptyStateImageView.setVisibility(View.VISIBLE);
+            textViewBelowEmptyView.setVisibility(View.VISIBLE);
         } else {
             mProgressBar.setVisibility(View.GONE);
 
             mEmptyStateImageView.setImageResource(R.drawable.error);
+            textViewBelowEmptyView.setText("Oops Something is wrong with the internet Connection :(");
         }
 
         /**
@@ -162,6 +168,8 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     public void onLoadFinished(Loader<List<Books>> loader, List<Books> data) {
         //Clear the adapter of previous book data
         mProgressBar.setVisibility(View.GONE);
+        textViewBelowEmptyView.setVisibility(View.GONE);
+        mEmptyStateImageView.setVisibility(View.GONE);
 
         mAdapter.clear();
 
@@ -170,11 +178,9 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
         if (data != null && !data.isEmpty()) {
             mAdapter.addAll(data);
-
         }
-        mEmptyStateImageView.setVisibility(View.GONE);
-
-
+            mProgressBar.setVisibility(View.GONE);
+            mEmptyStateImageView.setVisibility(View.GONE);
 
 
     }

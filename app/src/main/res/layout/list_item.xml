@@ -19,12 +19,12 @@
 
         <ImageView
             android:id="@+id/imageview_thumbnail"
-            android:layout_width="100dp"
+            android:layout_width="110dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:contentDescription="@string/item_thumbnail"
             android:scaleType="centerCrop"
-            android:src="@drawable/homodeus" />
+            android:src="@drawable/people_eading" />
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -112,7 +112,8 @@
                 android:layout_below="@id/title_n_authors"
                 android:layout_marginStart="@dimen/linear_layout_padding"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="@dimen/linear_layout_padding"
+                android:layout_marginBottom="@dimen/linear_layout_padding"
                 android:ellipsize="end"
                 android:maxLines="7"
                 android:textColor="@color/textColorBookDetails"

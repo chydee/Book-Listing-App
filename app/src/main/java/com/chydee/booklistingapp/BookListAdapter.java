@@ -54,12 +54,12 @@ public class BookListAdapter extends ArrayAdapter<Books> {
         //Get the {@link Books} object loacted at the  positions
         Books currentBook = getItem(position);
 
-        String requiredUrl;
+        //String requiredUrl;
         if (!currentBook.getThumnail().isEmpty()) {
             ImageView imageViewThumbnail = listItemView.findViewById(R.id.imageview_thumbnail);
             String requiredURL = currentBook.getThumnail();
             //requiredUrl = parts[0] + "s:" + parts[1];
-            Picasso.get().load(requiredURL).placeholder(R.drawable.homodeus).into(imageViewThumbnail);
+            Picasso.get().load(requiredURL).placeholder(R.drawable.people_eading).into(imageViewThumbnail);
         }
 
 
