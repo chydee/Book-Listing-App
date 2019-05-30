@@ -15,3 +15,4 @@ Creating a list based on that data and displaying it to the user.
 When user  enters a keyword, press the search button, they recieve a list of published books which relate to that keyword.
 
 To achieve this, I'll make use of the Google Books API. This is a well-maintained API which returns information in a JSON format.
+Here is the link to a typical Request of the Google Books API: https://www.googleapis.com/books/v1/volumes?q=homodeus&maxResults=3
