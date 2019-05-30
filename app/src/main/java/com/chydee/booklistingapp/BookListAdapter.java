@@ -57,9 +57,9 @@ public class BookListAdapter extends ArrayAdapter<Books> {
         String requiredUrl;
         if (!currentBook.getThumnail().isEmpty()) {
             ImageView imageViewThumbnail = listItemView.findViewById(R.id.imageview_thumbnail);
-            String[] parts = currentBook.getThumnail().split(":");
-            requiredUrl = parts[0] + "s:" + parts[1];
-            Picasso.get().load(requiredUrl).placeholder(R.drawable.homodeus).into(imageViewThumbnail);
+            String requiredURL = currentBook.getThumnail();
+            //requiredUrl = parts[0] + "s:" + parts[1];
+            Picasso.get().load(requiredURL).placeholder(R.drawable.homodeus).into(imageViewThumbnail);
         }
 
 

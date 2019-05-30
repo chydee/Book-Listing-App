@@ -150,10 +150,12 @@ public class QueryUtils {
                 String title = volumeInfo.optString("title");
                 JSONArray bookAuthors = volumeInfo.optJSONArray("authors");
                 //Get the name of the first author from the authors array
-                String authors = "";
-                for (int j = 0; j < bookAuthors.length(); j++){
+                String authors = bookAuthors.getString(0);
+
+               /* for (int j = 0; j < bookAuthors.length(); j++){
                     authors = bookAuthors.getString(j);
-                }
+                    TODO: Need attention
+                }*/
                 String publisher = volumeInfo.optString("publisher");
                 String date = volumeInfo.optString("publishedDate");
                 String description = volumeInfo.optString("description");
@@ -168,11 +170,11 @@ public class QueryUtils {
                 String imageUrl = imageLink.optString("thumbnail");
 
 
-                JSONArray categories = volumeInfo.optJSONArray("categories");
+               /* JSONArray categories = volumeInfo.optJSONArray("categories");
                 String mainCategory = "";
                 for (int x = 0; x < categories.length(); x++){
                      mainCategory = categories.getString(x);
-                }
+                }*/
                 String previewURL = volumeInfo.optString("infoLink");
 
                 /**
@@ -180,7 +182,7 @@ public class QueryUtils {
                  * from the JSON response
                  */
 
-                Books books1 = new Books(ratingsCount, authors, publisher, date, description, title, imageUrl, mainCategory, previewURL);
+                Books books1 = new Books(ratingsCount, authors, publisher, date, description, title, imageUrl, previewURL);
 
                books.add(books1);
             }
@@ -196,11 +198,11 @@ public class QueryUtils {
      */
 
     public static List<Books> fetchBooksData(String requestUrl){
-        try {
+       /* try {
             Thread.sleep(2000);// To delay the displaying of the data just to show the progress bar
         } catch (InterruptedException e) {
             e.printStackTrace();
-        }
+        }*/
         //Create URL object
         URL url = createUrl(requestUrl);
 

@@ -5,7 +5,7 @@ public class Books {
     private int mRatings;
     private String mThumnail;
     private String mPreviewUrl;
-    private String mCategory;
+    //private String mCategory;
     private String mDate;
     private String mTitle;
     private String mAuthors;
@@ -17,7 +17,6 @@ public class Books {
      * @param ratings for the book ratings
      * @param thumbnail for the book's image.
      * @param previewUrl for the book's preview page
-     * @param category for the category of the book
      * @param date for the date the book was published
      * @param publisher for the publishers' names
      * @param title for the title of the book
@@ -25,11 +24,11 @@ public class Books {
      * @param description for the book's description
      */
 
-    public Books(int ratings, String thumbnail, String previewUrl, String category, String date, String publisher, String title, String authors, String description){
+    public Books(int ratings, String thumbnail, String previewUrl, String date, String publisher, String title, String authors, String description){
         this.mRatings = ratings;
         this.mThumnail = thumbnail;
         this.mPreviewUrl = previewUrl;
-        this.mCategory = category;
+       // this.mCategory = category;
         this.mDate = date;
         this.mPublishers = publisher;
         this.mTitle = title;
@@ -51,9 +50,9 @@ public class Books {
         return mPreviewUrl;
     }
 
-    public String getCategory() {
-        return mCategory;
-    }
+   // public String getCategory() {
+       // return mCategory;
+   // }
 
     public String getDate() {
         return mDate;
