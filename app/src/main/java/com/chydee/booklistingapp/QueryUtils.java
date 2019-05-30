@@ -150,10 +150,10 @@ public class QueryUtils {
                 String title = volumeInfo.optString("title");
                 JSONArray bookAuthors = volumeInfo.optJSONArray("authors");
                 //Get the name of the first author from the authors array
-                StringBuilder authors = new StringBuilder();
+                String authors = "";
                 if (bookAuthors.length() > 1){
                     for (int j = 0; j < bookAuthors.length(); j++){
-                        authors.insert(0, bookAuthors.getString(j) + " and ");
+                        authors = bookAuthors.getString(j) + " and " + authors;
                     }
                 }
 
@@ -190,7 +190,7 @@ public class QueryUtils {
                  * from the JSON response
                  */
 
-                Books books1 = new Books(ratingsCount, imageURL, previewURL, date, publisher, title, authors.toString(), description);
+                Books books1 = new Books(ratingsCount, imageURL, previewURL, date, publisher, title, authors, description);
 
                books.add(books1);
             }
